@@ -1,0 +1,83 @@
+<script type="text/javascript">
+
+(function($) {
+    RED.nodes.registerType('meal',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            meal_type: {value: "sel"},
+            meal: {value: ""}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "",
+        label: function() {
+            return this.name||"meal";
+        },
+        oneditprepare : function() {
+            console.log("## on edit prepare");			
+			
+			$('#node-input-meal_type').on('change', function() {
+			    console.log("## meal type is changed ##");			
+				var sel = document.getElementById("node-input-meal_type");
+				console.log("## selected meal type: " + sel.value);
+				var drop = document.getElementById("node-input-meal");
+
+				if(sel.value == 'breakfast') {
+					var opt1 = document.createElement('option');
+					opt1.value = "sel";
+					opt1.innerHTML = "Select";
+					opt1.selected = true;
+					drop.appendChild(opt1);
+
+					var opt2 = document.createElement('option');
+					opt2.value = 'tea';
+					opt2.innerHTML = 'tea';
+					drop.appendChild(opt2);
+
+					var opt3 = document.createElement('option');
+					opt3.value = 'milk';
+					opt3.innerHTML = 'milk';
+					drop.appendChild(opt3);
+				} else if(sel.value == 'lunch') {
+
+
+				} else if(sel.value == 'dinner') {
+
+				}
+			});
+			
+			$('#node-input-meal').on('change', function() {
+				console.log("## meal is changed");
+				var meal = document.getElementById("node-input-meal");
+				console.log("## selected meal is: "+ meal.value);
+			});
+        },
+        oneditsave : function(){
+
+        }
+    });
+})(jQuery);
+</script>
+
+<script type="text/html" data-template-name="meal">
+    <div class="form-row">
+        <label for="node-input-meal_type">Type of Meal</label>
+        <select name="meal_type" id="node-input-meal_type">
+            <option value="sel" selected>Select</option>
+            <option value="breakfast">Brekfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-meal">Select item</label>
+        <select name="meal" id="node-input-meal">
+        </select>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="meal">
+    <p>A node which represents meals</p>
+</script>
