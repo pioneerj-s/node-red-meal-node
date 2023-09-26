@@ -1,0 +1,16 @@
+{
+  "name": "node-red-meal-node",
+  "version": "1.0.0",
+  "description": "meal node implementation",
+  "main": "meal-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pioneerj",
+  "license": "ISC",
+  "node-red": {
+    "nodes": {
+      "meal-node": "meal-node.js"
+    }
+  }
+}
